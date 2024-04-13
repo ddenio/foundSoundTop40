@@ -1,10 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-app.use(cors())
+const cors = require('cors')
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
+app.use(cors())
 
 let db,
     dbConnectionStr = process.env.DB_STRING,

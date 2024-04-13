@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-
+const cors = require('cors')
 const MongoClient = require('mongodb').MongoClient
 const PORT = process.env.PORT || 2121
 require('dotenv').config()
