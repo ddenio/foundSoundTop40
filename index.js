@@ -9,7 +9,7 @@ app.use(cors())
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'artist'
+    dbName = 'artists'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
