@@ -25,7 +25,7 @@ app.use(express.json())
 app.get('/',(request, response)=>{
     db.collection('artists').find().sort({likes: -1}).toArray()
     .then(data => {
-        response.render('index.ejs', { info: data })
+        response.render('index', { info: data })
     })
     .catch(error => console.error(error))
 })
