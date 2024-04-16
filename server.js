@@ -8,7 +8,7 @@ require('dotenv').config()
 app.use(cors())
 
 let db,
-    dbConnectionStr = process.env.DB_STRING,
+    dbConnectionStr = process.env.MONGODB_URI,
     dbName = 'artist'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
