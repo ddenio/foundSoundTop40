@@ -62,6 +62,23 @@ app.put('/addOneLike', (request, response) => {
 
 })
 
+app.put('/removeOneLike', (request, response) => {
+    db.collection('artists').updateOne({artistName: request.body.artistNameS, songName: request.body.songNameS,likes: request.body.likesS},{
+        $set: {
+            likes:request.body.likesS - 1
+          }
+    },{
+        sort: {_id: -1},
+        upsert: true
+    })
+    .then(result => {
+        console.log('Removed One Like')
+        response.json('Like Removed')
+    })
+    .catch(error => console.error(error))
+
+})
+
 app.delete('/deleteArtist', (request, response) => {
     db.collection('artists').deleteOne({artistName: request.body.artistNameS})
     .then(result => {
