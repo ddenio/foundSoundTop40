@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
     <link rel="icon" href="/images/compact-disc-solid-red.svg" />
     <title>FoundSound Top 40</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -12,36 +15,45 @@
 <body>
     <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/public/images/compact-disc-solid.svg" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
 <body>
-    <h1>Top Songs</h1>
-    <ul class="artists">
-    <% for(let i=0; i < info.length; i++) {%>
-        <li class="artist">
-            <span><%= info[i].artistName %></span>
-            <span><%= info[i].songName %></span>
-            <span><%= info[i].likes %></span>
-            <span class='fa fa-thumbs-up'></span>
-            <span class='fa fa-thumbs-down'></span>
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Add a Song:</h2>
-
-    <form action="/addArtist" method="POST">
-        <input type="text" placeholder="Artist Name" name="artistName">
-        <input type="text" placeholder="Song Name" name="songName">
-        <input type="submit">
-    </form>
     
+    <nav class="nav">
+        <ul class="navul">
+            <img src='/images/foundsound.jpg' alt="foundsound logo" id="foundsound">
+            <li><a href="index.html">Home</a></li><!--
+            --><li><a href="schedule.html">Schedule</a></li><!--
+            --><li><a href="venue.html">Venue</a></li><!--
+            --><li><a href="register.html">Register</a></li>
+          </ul>
+    </nav>
+
+    <div id="maincontainer">
+        
+        <h1 id="mainh1"><img src='/images/foundsound.jpg' alt="foundsound logo" id="foundsound">Top Songs</h1>
+        <h2 id="addsongheader">Add a Song:</h2>
+
+        <form action="/addArtist" method="POST">
+            <input type="text" placeholder="Artist Name" name="artistName">
+            <input type="text" placeholder="Song Name" name="songName">
+            <input type="submit">
+        </form>
+        <ul class="artists">
+        <% for(let i=0; i < info.length; i++) {%>
+            <li class="artist">
+                <span id="place"><%= [i+1] %></span>
+                <span><%= info[i].artistName %></span>
+                <span id="songtitle"><%= info[i].songName %></span>
+                <span><%= info[i].likes %></span>
+                <span class='fa fa-thumbs-up'></span>
+                <span class='fa fa-thumbs-down'></span>
+                <span class='fa fa-trash'></span>
+                
+            </li>
+        <% } %>
+        </ul>
+
+    </div>
 
     <script src='js/main.js'></script>
 </body>

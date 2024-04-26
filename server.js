@@ -37,7 +37,7 @@ app.get('/',(request, response)=>{
 
 app.post('/addArtist', (request, response) => {
     db.collection('artists').insertOne({artistName: request.body.artistName,
-    songName: request.body.songName, likes: 0})
+    songName: request.body.songName, likes: 1})
     .then(result => {
         console.log('Song Added')
         response.redirect('/')

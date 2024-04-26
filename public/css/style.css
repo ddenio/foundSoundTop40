@@ -2,6 +2,52 @@
 /* CSS
 /*******************************************/
 
+html{
+  font-size: 20px;
+}
+body{
+  font-family: "Jersey 15", sans-serif;
+  background-color: black;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.fa-thumbs-up, .fa-thumbs-down, .fa-trash{
+  color: #cb2824
+}
+
+h1,h2{
+  color:white;
+}
+
+h1{
+  font-size: 3.5rem;
+}
+
+ul{
+  color:rgb(181,181,181)
+}
+
+#place{
+  color:#cb2824
+}
+
+#songtitle{
+  color:white;
+}
+
+span{
+  margin: 5px;
+}
+
+#foundsound{
+  height:60px;
+  padding-right:20px;
+  vertical-align: middle;
+}
+
 /* Box Model Hack */
 *{
   box-sizing: border-box;
@@ -11,8 +57,66 @@
 /* LAYOUT
 /*******************************************/
 
+#maincontainer{
+  width:50%;
+  padding:10px;
+  padding-bottom:60px;
+  margin: 0 auto ;
+  text-align: center;
+  background-color: rgba(181, 181, 181, 0.123);
+  border-radius: 3px;
+}
 
+#mainh1{
+  color:white;
+  vertical-align: middle;
+}
 
+ul{
+  text-align: left;
+  width:50%;
+  margin: 0 auto;
+}
+#addsongheader{
+  margin-top:60px;
+  color:#cb2824
+}
+form{
+  margin-bottom: 80px;
+}
+
+.nav li {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: top;
+}
+.nav li:last-child {
+  margin-right: 0;
+}
+
+a {
+  text-decoration: none;
+  color:white;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+.nav {
+  display:flexbox;
+  justify-content: center;
+  width:100%;
+  margin: 0 auto;
+  /* border: 1px solid rgba(255, 255, 255, 0.527); */
+  
+  margin-bottom:40px;
+  padding:15px;
+  background-color: rgba(255, 0, 0, 0.397);
+ 
+  
+}
+
+.navul{
+  margin-left: 38%;
+  line-height: 3rem;
+}
