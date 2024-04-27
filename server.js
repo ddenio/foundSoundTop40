@@ -62,22 +62,57 @@ app.put('/addOneLike', (request, response) => {
 
 })
 
-app.put('/removeOneLike', (request, response) => {
-    db.collection('artists').updateOne({artistName: request.body.artistNameS, songName: request.body.songNameS,likes: request.body.likesS},{
-        $set: {
-            likes:request.body.likesS - 1
-          }
-    },{
-        sort: {_id: -1},
-        upsert: true
-    })
-    .then(result => {
-        console.log('Removed One Like')
-        response.json('Like Removed')
-    })
-    .catch(error => console.error(error))
+app.put('/removeOneLike', async (request, response) => {
+    try {
+        const { artistNameS, songNameS, likesS } = request.body;
+        const updatedLikes = likesS - 1;
+        await db.collection('artists').updateOne({ artistName: artistNameS, songName: songNameS }, { $set: { likes: updatedLikes } });
 
-})
+        if (updatedLikes < 0) {
+            // Delete the song if likes go below or equal to 0
+            await db.collection('artists').deleteOne({ artistName: artistNameS, songName: songNameS });
+            console.log('Song deleted due to negative likes or zero likes');
+            response.json({ message: 'Song deleted due to negative likes or zero likes' });
+        } else {
+            console.log('Removed One Like');
+            response.json('Like Removed');
+        }
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Internal server error' });
+    }
+});
+// app.put('/removeOneLike', (request, response) => {
+
+//         const { artistNameS, songNameS, likesS } = request.body;
+//         const updatedLikes = likesS - 1;
+//         db.collection('artists').updateOne({ artistName: artistNameS, songName: songNameS }, { $set: { likes: updatedLikes } });
+
+//         if (updatedLikes < 0) {
+//             // Delete the song if likes go below 0
+//             db.collection('artists').deleteOne({ artistName: artistNameS, songName: songNameS });
+//             console.log('Song deleted due to negative likes');
+//             response.json({ message: 'Song deleted due to negative likes' });
+//         } else {
+//             console.log('Removed One Like');
+//             response.json('Like Removed');
+//         }
+    
+//     // db.collection('artists').updateOne({artistName: request.body.artistNameS, songName: request.body.songNameS,likes: request.body.likesS},{
+//     //     $set: {
+//     //         likes:request.body.likesS - 1
+//     //       }
+//     // },{
+//     //     sort: {_id: -1},
+//     //     upsert: true
+//     // })
+//     // .then(result => {
+//     //     console.log('Removed One Like')
+//     //     response.json('Like Removed')
+//     // })
+//     // .catch(error => console.error(error))
+
+// })
 
 app.delete('/deleteArtist', (request, response) => {
     db.collection('artists').deleteOne({artistName: request.body.artistNameS})

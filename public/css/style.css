@@ -18,6 +18,10 @@ ul {
   color: #cb2824
 }
 
+.fa-trash{
+  color: rgba(22,22,22,255)
+}
+
 h1,h2{
   color:white;
 }
